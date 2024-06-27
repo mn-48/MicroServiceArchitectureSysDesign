@@ -32,3 +32,41 @@ _run detuched Mode Terminal_
 > (3) remove container
 
 > (4) run container
+
+
+#### Install MySQL Srver
+```
+sudo apt-get update
+sudo apt-get install mysql-server
+
+mysql --version
+
+```
+
+
+```
+sudo mysql -u root -p
+
+show databases;
+
+use mysql
+
+update user set plugin='mysql_native_password' where user='root'; 
+
+flush privileges;
+
+exit
+
+```
+
+
+```
+mysql -u root -p
+create database demo;
+show databases;
+
+```
+
+
+
+
