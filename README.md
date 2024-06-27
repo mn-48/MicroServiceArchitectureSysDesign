@@ -1,3 +1,3 @@
 # MicroServiceArchitectureSysDesign
 
-![Architecture.png](/doc/Architecture.png)
+![MicroServiceArchitecture.jpg](/doc/images/MicroServiceArchitecture.jpg)
