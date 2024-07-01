@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', '')
         )
+        # print("Send OTP/Link ....")
         return user
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
