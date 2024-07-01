@@ -35,4 +35,4 @@ docker-compose exec web python manage.py migrate
 ```
 
 
-docker-compose exec pip install djangorestframework
+docker-compose exec web python manage.py createsuperuser
