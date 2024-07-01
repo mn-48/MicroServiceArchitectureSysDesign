@@ -6,6 +6,13 @@ docker-compose up --build
 
 docker-compose up -d --build 
 
+# Migrate database:
+
+docker-compose exec web python manage.py makemigrations
+
+
+docker-compose exec web python manage.py migrate
+
 ```
 
 
@@ -28,11 +35,8 @@ docker network rm $(docker network ls -q)
 
 ```
 
-# Migrate database:
-```
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
-```
+
+
 
 
 docker-compose exec web python manage.py createsuperuser
