@@ -22,21 +22,43 @@ class ProductViewSet(viewsets.ViewSet):
 
 
     def retrieve(self, request, pk=None):
-        queryset = Product.objects.all()
-        product = get_object_or_404(queryset, pk=pk)
-        serializer = ProductSerializer(product)
+        try:
+            instance = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = ProductSerializer(instance)
         return Response(serializer.data)
-    
+
 
     def update(self, request, pk=None):
-        product = Product.objects.get(id=pk)
-        serializer = ProductSerializer(instance = product, data=request.data)
+        try:
+            instance = Product.objects.get(id=pk)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = ProductSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
     def partial_update(self, request, pk=None):
-        pass
+        try:
+            instance = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = ProductSerializer(instance, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
 
     def destroy(self, request, pk=None):
-        pass
+        try:
+            instance = Product.objects.get(pk=pk)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
