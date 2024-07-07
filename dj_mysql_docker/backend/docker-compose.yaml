@@ -3,13 +3,16 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
+    # command: sudo chmod -R 755 .mysql_data
     volumes:
-      - mysql_data:/var/lib/mysql
+      # - mysql_data:/var/lib/mysql
+      - .mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
+
 
   web:
     build: .
@@ -27,5 +30,7 @@ services:
       MYSQL_PASSWORD: mypassword
       MYSQL_DATABASE: mydatabase
 
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:
+
+
