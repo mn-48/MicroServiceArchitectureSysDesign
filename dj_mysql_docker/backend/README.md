@@ -44,5 +44,11 @@ docker network rm $(docker network ls -q)
 
 
 
-
+```
 docker-compose exec web python manage.py createsuperuser
+```
+
+# Access Container Shell
+```
+docker exec -it  backend_web_1 /bin/bash
+```
