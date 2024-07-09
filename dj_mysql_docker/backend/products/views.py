@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 import random
 from .models import Product
 from users.models import User
+from .producer import publish
 from .serializers import ProductSerializer
 
 
@@ -21,6 +22,7 @@ class ProductViewSet(viewsets.ViewSet):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        publish('product_created', serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -64,6 +66,7 @@ class ProductViewSet(viewsets.ViewSet):
         except Product.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         instance.delete()
+        publish('product_deleted', pk)
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 

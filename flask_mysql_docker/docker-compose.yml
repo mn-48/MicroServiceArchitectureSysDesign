@@ -13,6 +13,14 @@ services:
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
 
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python -u consumer.py'
+    depends_on:
+      - db
+
   web:
     build: .
     command: python main.py 
