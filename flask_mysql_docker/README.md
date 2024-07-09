@@ -1,0 +1,1 @@
+docker exec -it  backend_web_1 /bin/bash

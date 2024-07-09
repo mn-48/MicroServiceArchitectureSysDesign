@@ -35,6 +35,14 @@
         "documentation": {}
     },
     {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchamy",
+        "description": "flask_sqlalchamy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchamy",
+        "documentation": {}
+    },
+    {
         "label": "bin_dir",
         "kind": 5,
         "importPath": "venv.bin.activate_this",
@@ -107,6 +115,15 @@
         "documentation": {}
     },
     {
+        "label": "product",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class product(db.Model):\n    id = db.Column(db.Integer, primary_key=True, autoincrement=False)\n    title = db.Column(db.string(200))\n    image = db.Column(db.string(200))\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"\nif __name__==\"__main__\":\n    app.run(debug=True, host='0.0.0.0')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "hello_world",
         "kind": 2,
         "importPath": "main",
@@ -120,7 +137,25 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"\nif __name__==\"__main__\":\n    app.run(debug=True, host='0.0.0.0')",
+        "peekOfCode": "app = Flask(__name__)\napp.config[\"SQLALCHEMY_DATABASE_URI\"] = \"myqsl://root:root@db/main\"\ndb = SQLAlchemy(app)\nclass product(db.Model):\n    id = db.Column(db.Integer, primary_key=True, autoincrement=False)\n    title = db.Column(db.string(200))\n    image = db.Column(db.string(200))\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app.config[\"SQLALCHEMY_DATABASE_URI\"]",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app.config[\"SQLALCHEMY_DATABASE_URI\"] = \"myqsl://root:root@db/main\"\ndb = SQLAlchemy(app)\nclass product(db.Model):\n    id = db.Column(db.Integer, primary_key=True, autoincrement=False)\n    title = db.Column(db.string(200))\n    image = db.Column(db.string(200))\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"\nif __name__==\"__main__\":",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "db = SQLAlchemy(app)\nclass product(db.Model):\n    id = db.Column(db.Integer, primary_key=True, autoincrement=False)\n    title = db.Column(db.string(200))\n    image = db.Column(db.string(200))\n@app.route(\"/\")\ndef hello_world():\n    return \"<p>Hello, World!</p>\"\nif __name__==\"__main__\":\n    app.run(debug=True, host='0.0.0.0')",
         "detail": "main",
         "documentation": {}
     }
